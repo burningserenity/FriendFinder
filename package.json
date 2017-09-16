@@ -1,0 +1,28 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "friend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burningserenity/FriendFinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burningserenity/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/burningserenity/FriendFinder#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "bootstrap": "^3.3.7",
+    "chosen-npm": "^1.4.2",
+    "express": "^4.15.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "path": "^0.12.7"
+  }
+}
