@@ -1,14 +1,21 @@
+var express = require('express');
+var path = require("path");
+
+var router = express.Router();
+
 // Route to survey page
-app.get("/survey"), function(req, res) {
-    res.sendFile(path.join(__dirname/../public/survey.html));
-};
+router.get("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/survey.html"));
+});
 
 // Default to home page
-app.get("*", function(req, res) {
+/*router.get("*", function(req, res) {
     res.redirect('/');
-});
+});*/
 
 // Route to home page
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname/../public/home.html));
+router.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, '../public/home.html'));
 });
+
+module.exports = router;

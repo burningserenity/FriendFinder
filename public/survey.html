@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta "content-type" content="text/html; charset=utf-8">
         <title>Friend Finder</title>
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../node_modules/chosen-npm/public/chosen.css">
+        <!-- Jquery -->
+        <script src="/jquery/dist/jquery.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+	    <!-- Chosen -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
     </head>
     <body>
 
@@ -55,9 +62,9 @@
             </select>
             
             <h3 style="font-weight: bold">Question 4</h3>
-            <h4></h4>
-            <select data-placeholder="" class="chosen-select" id="q4">
-                <option value="">Sex on the xth date?</option>
+            <h4>Sex on the xth date?</h4>
+            <select data-placeholder="" class="chosen-select" id="q4" style="width: 23%">
+                <option value=""></option>
                 <option value="1">1st</option>
                 <option value="2">2nd</option>
                 <option value="3">3rd</option>
@@ -110,9 +117,9 @@
             </select>
             
             <h3 style="font-weight: bold">Question 9</h3>
-            <h4></h4>
+            <h4>You have done, or are willing to try a threesome</h4>
             <select data-placeholder="" class="chosen-select" id="q9">
-                <option value="">You have done, or are willing to try a threesome</option>
+                <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -121,9 +128,9 @@
             </select>
             
             <h3 style="font-weight: bold">Question 10</h3>
-            <h4></h4>
+            <h4>The Oreo really is America's favorite cookie</h4>
             <select data-placeholder="" class="chosen-select" id="q10">
-                <option value="">The Oreo really is America's favorite cookie</option>
+                <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -159,5 +166,50 @@
             </div>
         </div>
         
+        <script type="text/javascript">
+
+            // Chosen
+            var config = {
+                '.chosen-select' : {},
+                '.chosen-select-deselect' : {allow_single_deselect: true},
+                '.chosen-select-no-single' : {disable_search_threshold: 10},
+                '.chosen-select-no-results' : {no_results_text: 'Oops, nothing found!'},
+                '.chosen-select-width' : {width: "95%"}
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+            // Get user input
+            $("#submit").on("click", function() {
+                function validateForm() {
+                    var isValid = true;
+                    $('.form-control').each(function() {
+                        if ($(this).val() === '') isValid = false;
+                    });
+                    return isValid;
+                }
+
+                if (validateForm() == true) {
+                    var userData = {
+                        name: $("#name").val(),
+                        photo: $("#photo").val(),
+                        scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
+                    }
+
+                    var currentURL = window.location.origin;
+
+                    $.post(currentURL + "/api/friends", userData, function(data) {
+                        $("#matchName").text(data.name);
+                        $("#matchImg").attr("src", data.photo);
+                        $("#resultsModal").modal("toggle");
+                    });
+                }
+                else alert("Please fill out all fields before submitting!");
+
+                return false;
+            });
+
+        </script>
     </body>
 </html>
