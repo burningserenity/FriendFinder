@@ -8,11 +8,6 @@ router.get("/survey", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/survey.html"));
 });
 
-// Default to home page
-/*router.get("*", function(req, res) {
-    res.redirect('/');
-});*/
-
 // Route to home page
 router.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, '../public/home.html'));

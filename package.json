@@ -22,6 +22,7 @@
     "chosen-npm": "^1.4.2",
     "express": "^4.15.4",
     "font-awesome": "^4.7.0",
+    "fs": "0.0.1-security",
     "jquery": "^3.2.1",
     "path": "^0.12.7"
   }

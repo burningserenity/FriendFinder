@@ -6,10 +6,10 @@
         <!-- Jquery -->
         <script src="/jquery/dist/jquery.js"></script>
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+        <script src="/bootstrap/dist/js/bootstrap.js"></script>
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
 	    <!-- Chosen -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
@@ -151,7 +151,7 @@
         </div>
 
         <div id="resultsModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style="background-color: azure">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h2 class="modal-title" style="font-weight: bold">Best Match</h2>
@@ -195,6 +195,13 @@
                         name: $("#name").val(),
                         photo: $("#photo").val(),
                         scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
+                    }
+
+                    for (i = 0; i < 10; i++) {
+                        if (userData.scores[i] < 1 || userData.scores[i] == undefined) {
+                            alert("Please answer all questions before submitting!");
+                            return false;
+                        }
                     }
 
                     var currentURL = window.location.origin;
