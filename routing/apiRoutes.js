@@ -18,19 +18,19 @@ router.get("/", function(req, res) {
 // Route to handle survey results and compatibility calculations
 router.post("/", function(req, res) {
     var newFriend = req.body;
-    console.log(newFriend);
     friends.push(newFriend);
-    //res.json(newFriend);
+    diffArr = [];
 
-    outerloop: for (i = 0; i < friends.length; i++) {
+    for (i = 0; i < friends.length - 1; i++) {
         for (j = 0; j < friends[i].scores.length; j++) {
-            if (newFriend.scores.join("") == friends[i].scores.join("")) break outerloop;
             var diff = Math.abs(newFriend.scores[j] - friends[i].scores[j]);
             totDiff += diff;
         }
         diffArr.push(totDiff);
         totDiff = 0;
     }
+
+    match = 0;
 
     for (i = 0; i < diffArr.length; i++) {
         if (diffArr[i] < diffArr[i-1]) match = diffArr.indexOf(diffArr[i]);
