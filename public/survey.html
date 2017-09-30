@@ -28,6 +28,7 @@
             <input type="text" name="photo" id="photo" class="form-control" required>
             <hr>
 
+            <!-->Questions<-->
             <h3 style="font-weight: bold">Question 1</h3>
             <h4>Chocolate is the best flavor of ice cream</h4>
             <select data-placeholder="" class="chosen-select" id="q1">
@@ -142,7 +143,7 @@
 
             <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"<i class="fa fa-upload" aria-hidden="true"></i> Submit</button>
             <hr>
-
+            <!-->View JSON of users or GitHub page, same as index.html<-->
             <footer class="footer">
                 <div class="containter">
                     <p style="margin-left: -12px"><a href="/api/friends">API Friends List</a> | <a href="https://github.com/burningserenity/FriendFinder">GitHub Repo</a></p>
@@ -150,6 +151,7 @@
             </footer>
         </div>
 
+        <!-->Modal showing the best match as per the survey<-->
         <div id="resultsModal" class="modal fade" role="dialog">
             <div class="modal-dialog" style="background-color: azure">
                 <div class="modal-header">
@@ -205,6 +207,8 @@
                     }
 
                     var currentURL = window.location.origin;
+
+                    // Add new user to JSON object
 
                     $.post(currentURL + "/api/friends", userData, function(data) {
                         $("#matchName").text(data.name);
